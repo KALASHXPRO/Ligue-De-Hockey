@@ -69,11 +69,15 @@ a{
 
 .container{
     margin-top: 50px;
-    margin-left: 200px;
+    position:absolute;
+		  right:25px;
+          left: 275px;
     text-align: center;
 }
 .item{
-    margin-left: 170px;
+    position:absolute;
+		  right:25px;
+          left: 275px;
 }
 
 #myCarousel{

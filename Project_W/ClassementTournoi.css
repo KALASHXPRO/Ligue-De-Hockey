@@ -49,7 +49,9 @@ a{
     margin: 15px;
 }
 .Classements{
-    margin-left: 650px;
+    position:absolute;
+		  right:25px;
+          left: 275px;
     margin-top: 10px;
 }
 

@@ -51,7 +51,9 @@ a{
 
 
 .CalendrierTableaux{
-    margin-left: 400px;
+    position:absolute;
+		  right :25px;
+          left: 275px;
     display: flex;
     flex: inline;
     justify-content: space-between;

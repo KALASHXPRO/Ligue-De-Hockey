@@ -44,7 +44,9 @@ a{
 
 
 .Équipes{
-    margin-left: 300px;
+    position:absolute;
+		  right:25px;
+          left: 275px;
     margin-top: 170px;
     font-size: 15px;
 
