@@ -9,9 +9,10 @@
 <body >
 	<h1>Démos chapitre 5C : Classes, tests unitaires et inclusions</h1>
 	<h3><a href="modele/testProduit.php">#1</a>-Test pour les équipes</h3>
-    <h3><a href="Project_W/Équipes.php">#2</a>-Test pour les équipes dans le actual site</h3>
+    <h3><a href="modele/Équipes.php">#2</a>-Test pour les équipes dans le actual site</h3>
 	<h3><a href="modele/EquipesPhp.php">#3</a>-Test pour les équipes</h3>
 	<h3><a href="modele/Matches.php">#4</a>-Test pour le calendrier</h3>
 	<h3><a href="modele/Resultats.php">#5</a>-Test pour la page resultats</h3>
+	<h3><a href="Coterphp/connexiontraitement.php">6#</a>test pour ouvrir la page de connexiontraitement</h3>
 	</body>
 </html>

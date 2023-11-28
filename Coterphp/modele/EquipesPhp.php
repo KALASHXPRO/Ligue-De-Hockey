@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="Project_W/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Accueil</title>
 </head>
 <body>
 
     <header>
             <div class="Header-elements">
-                <div class="site-logo"><img src="Project_W/images/logo.png"  width="200" height="150" alt="imagedulogo"></div>
+                <div class="site-logo"><img src="images/logo.png"  width="200" height="150" alt="imagedulogo"></div>
                 <div class="NomDuSite">
                   <div>
                   <h1>Bienvenue a la league de hockey</h1></div>
@@ -35,10 +35,9 @@
             <div id="listeMenu">          
             <ul>
                 <li><a href="PageAccueil.html" >Page d'accueil</a></li>
-                <li><a href="Calendrier.html" >Les calendriers de nos tournois</a></li>
-                <li><a href="Resultats.html" >Les résultats des matches</a></li>
-                <li><a href="ClassementTournoi.html" >Catégorie et Classements des tournois</a></li>
-                <li><a href="Équipes.php" >Nos équipes</a></li>
+                <li><a href="Matches.php" >Les calendriers de nos tournois</a></li>
+                <li><a href="Resultats.php" >Les résultats des matches</a></li>
+                <li><a href="EquipesPhp.php" >Nos équipes</a></li>
 
             </ul>
         </div>

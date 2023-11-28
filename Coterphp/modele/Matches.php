@@ -33,10 +33,9 @@
             <div id="listeMenu">          
             <ul>
                 <li><a href="PageAccueil.html" >Page d'accueil</a></li>
-                <li><a href="Calendrier.html" >Les calendriers de nos tournois</a></li>
-                <li><a href="Resultats.html" >Les résultats des matches</a></li>
-                <li><a href="ClassementTournoi.html" >Catégorie et Classements des tournois</a></li>
-                <li><a href="Équipes.html" >Nos équipes</a></li>
+                <li><a href="Matches.php" >Les calendriers de nos tournois</a></li>
+                <li><a href="Resultats.php" >Les résultats des matches</a></li>
+                <li><a href="EquipesPhp.php" >Nos équipes</a></li>
 
             </ul>
         </div>

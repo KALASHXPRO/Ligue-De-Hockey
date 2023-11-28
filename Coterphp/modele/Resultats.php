@@ -33,10 +33,9 @@
             <div id="listeMenu">          
             <ul>
                 <li><a href="PageAccueil.html" >Page d'accueil</a></li>
-                <li><a href="Calendrier.html" >Les calendriers de nos tournois</a></li>
-                <li><a href="Resultats.html" >Les résultats des matches</a></li>
-                <li><a href="ClassementTournoi.html" >Catégorie et Classements des tournois</a></li>
-                <li><a href="Équipes.html" >Nos équipes</a></li>
+                <li><a href="Matches.php" >Les calendriers de nos tournois</a></li>
+                <li><a href="Resultats.php" >Les résultats des matches</a></li>
+                <li><a href="EquipesPhp.php" >Nos équipes</a></li>
 
             </ul>
         </div>
@@ -53,12 +52,12 @@
         );
         
     $unResultatJunior = array(
-    new Resultat_Match_Junior("0-2","Les lightings de Montréal","Les Aiglons Noires",1),
-new Resultat_Match_Junior("0-3","Soak City","Les Patins Aiguisé",2),
-new Resultat_Match_Junior("4-4","Les penguins d'Ottawa","Les Dragons de glace",3),
-new Resultat_Match_Junior("3-5","Les cyclone de Longueil","Les Patineurs Fringuants",4),
-new Resultat_Match_Junior("2-1","Les foudroyants de Saguenay","Les Requins Blancs",5),
-);
+        new Resultat_Match_Junior("0-2","Les lightings de Montréal","Les Aiglons Noires",1),
+        new Resultat_Match_Junior("0-3","Soak City","Les Patins Aiguisé",2),
+        new Resultat_Match_Junior("4-4","Les penguins d'Ottawa","Les Dragons de glace",3),
+        new Resultat_Match_Junior("3-5","Les cyclone de Longueil","Les Patineurs Fringuants",4),
+        new Resultat_Match_Junior("2-1","Les foudroyants de Saguenay","Les Requins Blancs",5),
+        );
 
 
     ?>
