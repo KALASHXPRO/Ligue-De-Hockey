@@ -1,9 +1,4 @@
 <?php
-   // *****************************************************************************************
-	// Description   : classe contenant la fonction statiquu qui géère les contrôleurs spécifiques
-	// Date        : 27 novembre 2021
-	// Auteur      : Dini Ahamada
-    // *****************************************************************************************
 	include_once("controleurs/controleurAccueilDefaut.class.php");
     include_once("controleurs/controleurVoirEquipes.class.php");
 	include_once("controleurs/controleurVoirEquipes2.class.php");
@@ -12,8 +7,7 @@
 	include_once("controleurs/controleurVoirCalendrier.class.php");
 	include_once("controleurs/controleurVoirCalendrier2.class.php");
 	class Manufacture {
-		//  Méthode qui crée une instance du controleur associé à l'action
-		//  et le retourne
+
 		public static function creerControleur($action) {
 			$controleur=null;
 			if($action=="voirEquipes"){

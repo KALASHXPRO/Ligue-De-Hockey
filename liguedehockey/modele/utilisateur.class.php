@@ -1,6 +1,6 @@
 <?php
 
-// Classe représentant un produit pour vente dans un commerce
+
 class Utilisateur {
 	// Attributs
 	private $nomUtilisateur;
