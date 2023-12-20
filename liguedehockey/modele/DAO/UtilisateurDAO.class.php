@@ -1,5 +1,5 @@
 <?php
-	include_once("modele/DAO/DAO.interface.php");
+	include_once("DAO.interface.php");
 	include_once("modele/utilisateur.class.php");
 	
 	class UtilisateurDAO implements DAO {	
