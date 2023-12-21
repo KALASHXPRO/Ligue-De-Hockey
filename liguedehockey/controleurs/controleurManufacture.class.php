@@ -6,7 +6,10 @@
 	include_once("controleurs/controleurVoirResultats2.class.php");
 	include_once("controleurs/controleurVoirCalendrier.class.php");
 	include_once("controleurs/controleurVoirCalendrier2.class.php");
-	include_once("controleurs/controleurVoirConnexion.class.php");
+	include_once("controleurs/seDeconnecter.class.php");
+	include_once("controleurs/seConnecter.class.php");
+	include_once("controleurs/voirAdmin.class.php");
+	
 	class Manufacture {
 
 		public static function creerControleur($action) {
@@ -29,8 +32,14 @@
 			elseif($action== "voirCalendrier2"){
 				$controleur = new VoirCalendrier2();
 			}
-			elseif($action== "voirConnexion"){
-				$controleur = new VoirConnexion();
+			elseif($action== "voirAdmin"){
+				$controleur = new VoirAdmin();
+			}
+			elseif($action== "seConnecter"){
+				$controleur = new SeConnecter();
+			}
+			elseif($action== "seDeconnecter"){
+				$controleur = new SeDeconnecter();
 			}
 			else{
 				$controleur = new AcceuilDefaut();

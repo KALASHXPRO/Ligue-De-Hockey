@@ -1,5 +1,5 @@
 <?php
-	include_once("DAO.interface.php");
+	include_once("modele/DAO/DAO.interface.php");
 	include_once("modele/utilisateur.class.php");
 	
 	class UtilisateurDAO implements DAO {	
@@ -12,13 +12,13 @@
 			}
 			
 			$leUtilisateur=null; 
-			$requete= $connexion->prepare("SELECT * FROM utilisateur WHERE nom=:leNom");
+			$requete= $connexion->prepare("SELECT * FROM utilisateur WHERE nom_utilisateur=:leNom");
 			$requete->bindParam(":leNom",$cles);  
 			$requete->execute();			
 			
 			if ($requete->rowCount() > 0) {
 				$enregistrement=$requete->fetch();
-				$leUtilisateur=new Utilisateur($enregistrement['nom'], $enregistrement['mot_passe']);
+				$leUtilisateur=new Utilisateur($enregistrement['nom_utilisateur'], $enregistrement['mot_passe']);
 			}
 			
 			$requete-> closeCursor();
@@ -43,7 +43,7 @@
 			$requete-> execute();			
 
 			foreach ($requete as $enregistrement) {
-				$leUtilisateur=new Utilisateur($enregistrement['nom'], $enregistrement['mot_passe']);
+				$leUtilisateur=new Utilisateur($enregistrement['nom_utilisateur'], $enregistrement['mot_passe']);
 				array_push($liste, $leUtilisateur);
 			}
 			
@@ -60,7 +60,7 @@
 				throw new Exception("Impossible d’obtenir la connexion à la BD."); 
 			}
 			
-			$commandeSQL  = "INSERT INTO Utilisateur (nom,mot_passe)";  
+			$commandeSQL  = "INSERT INTO Utilisateur (nom_utilisateur,mot_passe)";  
 			$commandeSQL .=  "VALUES (?,?)";
 			$requete = $connexion->prepare($commandeSQL);
 
@@ -75,7 +75,7 @@
 				throw new Exception("Impossible d’obtenir la connexion à la BD."); 
 			}
 			
-			$commandeSQL = "UPDATE utilisateur SET nom=?, mot_passe=?";
+			$commandeSQL = "UPDATE utilisateur SET nom_utilisateur=?, mot_passe=?";
 			$requete = $connexion->prepare($commandeSQL);
 			$tab = [$unUtilisateur->getNomUtilisateur(), $unUtilisateur->getMotPasse()];
 			return	$requete-> execute($tab);
@@ -88,7 +88,7 @@
 				throw new Exception("Impossible d’obtenir la connexion à la BD."); 
 			}
 			
-			$commandeSQL = "DELETE FROM utilisateur WHERE nom=?";
+			$commandeSQL = "DELETE FROM utilisateur WHERE nom_utilisateur=?";
 			$requete = $connexion->prepare($commandeSQL);
 			return	$requete-> execute([$unUtilisateur->getNomUtilisateur()]);
 		} 

@@ -1,4 +1,14 @@
 <?php
+function afficherErreurs($tabMessages) {
+	if (count($tabMessages) > 0) {
+		echo "<ul>";
+		foreach ($tabMessages as $message) {
+			echo "<li>$message</li>";
+		}	
+		echo "</ul>";
+		echo "</div>";
+	}
+}
 function afficherMenu($tableau, $indiceOptionActive) {
     echo "<ul>";
     $i = 0;
@@ -203,6 +213,14 @@ function afficherTableCalendriers2($unTableau2) {
     }
     echo "</tbody>";
     echo "</table>";
+}
+
+function afficherUnUtilisateur($UnUtilisateur){
+    echo "<h2>" . $UnUtilisateur->getNomUtilisateur(). "<h2>";
+}
+
+function afficherTableUtilisateurs($unTableau2){
+    echo "<h2>Utilisateur</h2>";
 }
 ?>
 

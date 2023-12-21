@@ -1,16 +1,19 @@
-CREATE DATABASE ligueHockeyDB DEFAULT CHARACTER SET utf8 COLLATE utf8tf8_unicode_ci;
+CREATE DATABASE ligueHockeyDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE ligueHockeyDB;
 
-CREATE TABLE Utilisateurs
-(
-    utilisateur VARCHAR(255),
-    motdepasse VARCHAR(255),
-    CONSTRAINT utilisateur_pk PRIMARY KEY (utilisateur)
+CREATE TABLE utilisateur (
+  nom_utilisateur         VARCHAR(255),
+  mot_passe               VARCHAR(255),
+  CONSTRAINT user_pk PRIMARY KEY (nom_utilisateur)
 );
 
-INSERT INTO Utilisateurs VALUES ('root','root');
-INSERT INTO Utilisateurs VALUES ('ismail','1234');
+INSERT INTO utilisateur VALUES ('root','root');
+INSERT INTO utilisateur VALUES ('ismail','1234');
+INSERT INTO utilisateur VALUES ('dave','4321');
+INSERT INTO utilisateur VALUES ('Lebron','lebron');
+
+
 
 
 CREATE TABLE Equipes_Majeures

@@ -1,3 +1,4 @@
+<?php if(!ISSET($controleur)) header("Location: ..\index.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
                 <div class="NomDuSite">
                   <div>
                   <h1>Bienvenue a la league de hockey</h1></div>
-                  <a href="?action=voirConnexion"><p class="seconnecter">Se connecter</p></a>
+                  <a href="?action=seConnecter"><p class="seconnecter">Se connecter</p></a>
                 </div>
               </div>
         <div class="apropos"><h2>A propos</h2></div>

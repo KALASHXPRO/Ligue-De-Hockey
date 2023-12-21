@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="carouselscript.js"></script>
+    <script src="js/carouselscript.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/carouselscript.js">
     <title>Accueil</title>
 </head>
 <body>
@@ -20,7 +21,12 @@
                 <div class="NomDuSite">
                   <div>
                   <h1>Bienvenue a la league de hockey</h1></div>
-                  <a href="?action=seConnecter"><p class="seconnecter">Se connecter</p></a>
+                  <a href="?action=voirPageAccueil"><p class="seconnecter">Se deconnecter</p></a>
+                  <?php $typeActeur = $controleur->getActeur();
+                  if ($typeActeur != "visiteur") {
+                    $nomUtilisateur = $_SESSION['utilisateurConnecte']; echo "<h5 style='color:white; ; text-align:center'> Bienvenue  $nomUtilisateur</h5></div>";
+                  }
+?>
                 </div>
               </div>
         <div class="apropos"><h2>A propos</h2></div>
@@ -48,19 +54,27 @@
         </div>
         </div>
 
-        <div class="CalendrierTableaux">
-        
-        <?php
-            // ==================== Utilisation des fonctions d'affichage ===================== 
-            include "/vues/inclusions/fonctions.inc.php";
-            afficherTableCalendriers2($controleur->getTabCalendrier2());
-        
-        ?>
+
+        <div class="container">
+          <div class="slider">
+            <div class="box1">
+            </div>
+            <div class="box2">
+            </div>
+            <div class="box3">
+            </div>
+            <div class="box4">
+            </div>
+            <div class="box5">
+            </div>
+            <div class="box6">
+            </div>
+            <div class="box7">
+            </div>
+          </div>
         </div>
-
-
-
-        
+        <div id="test"></div>
+        </div>
 
     </div>
     <footer>

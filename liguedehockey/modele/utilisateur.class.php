@@ -21,7 +21,7 @@ class Utilisateur {
 	
 	// Affichage
 	public function __toString(){
-		$message=$this->nomUtilisateur;
+		$message= (string) $this->nomUtilisateur;
 		return $message;
 	}
 }
