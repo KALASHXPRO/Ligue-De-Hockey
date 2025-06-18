@@ -10,7 +10,7 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-    <title>Le calendrier junior</title>
+    <title>Ajouter un résultat majeur</title>
 </head>
 <body>
     <header>
@@ -42,16 +42,32 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     </nav>
     <div class="corps">
         <main class="main-content">
-            <div class="apropos"><h2>Le calendrier junior</h2></div>
-            <div class="texte"><p>Consultez ici le calendrier des matchs juniors.</p></div>
-            <?php if (!empty($_SESSION['is_admin'])): ?>
-                <a href="?action=ajouterCalendrierJunior" class="btn-add">Ajouter un match junior</a>
-            <?php endif; ?>
-            <div class="CalendrierTableaux">
-                <?php
-                include_once "/vues/inclusions/fonctions.inc.php";
-                afficherTableCalendriersJunior($controleur->getTabCalendrierJunior(), !empty($_SESSION['is_admin']));
-                ?>
+            <div class="apropos"><h2>Ajouter un résultat majeur</h2></div>
+            <div class="texte">
+                <form action="?action=ajouterResultatSenior" method="post" class="form-container">
+                    <label for="idMatch">Match :</label>
+                    <select id="idMatch" name="idMatch" required onchange="updateEquipes()">
+                        <option value="">Sélectionnez un match</option>
+                        <?php 
+                        $matchs = CalendrierSeniorDAO::obtenirMatchsSansResultat();
+                        foreach ($matchs as $match) { 
+                        ?>
+                            <option value="<?php echo $match->getId(); ?>" 
+                                    data-equipe-locale="<?php echo htmlspecialchars($match->getEquipeLocale()); ?>"
+                                    data-equipe-visiteuse="<?php echo htmlspecialchars($match->getEquipeVisiteuse()); ?>">
+                                <?php echo $match->getId() . " - " . $match->getDate() . " - " . $match->getEquipeLocale() . " vs " . $match->getEquipeVisiteuse(); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+
+                    <label for="score">Score :</label>
+                    <input type="text" id="score" name="score" required>
+
+                    <input type="hidden" id="equipeLocale" name="equipeLocale">
+                    <input type="hidden" id="equipeVisiteuse" name="equipeVisiteuse">
+
+                    <button type="submit" class="btn-action edit">Ajouter le résultat</button>
+                </form>
             </div>
         </main>
     </div>
@@ -60,5 +76,14 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
             <a href="mailto:2253910@crosemont.qc.ca">CONTACT</a>
         </div>
     </footer>
+
+    <script>
+    function updateEquipes() {
+        var select = document.getElementById('idMatch');
+        var option = select.options[select.selectedIndex];
+        document.getElementById('equipeLocale').value = option.getAttribute('data-equipe-locale');
+        document.getElementById('equipeVisiteuse').value = option.getAttribute('data-equipe-visiteuse');
+    }
+    </script>
 </body>
-</html>
+</html> 

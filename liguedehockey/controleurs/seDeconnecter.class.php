@@ -1,27 +1,35 @@
 <?php
 
-	include_once("controleurs/controleur.abstract.class.php");
-	include_once("modele/DAO/utilisateurDAO.class.php");
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
 
-	class SeDeconnecter extends  Controleur {
-		
-		// ******************* Constructeur vide
-		public function __construct() {
-			parent::__construct();
+include_once("controleurs/controleur.abstract.class.php");
+include_once("modele/DAO/utilisateurDAO.class.php");
+
+class SeDeconnecter extends  Controleur {
+	
+	// ******************* Constructeur vide
+	public function __construct() {
+		parent::__construct();
+	}
+	
+	// ******************* Méthode exécuter action
+	public function executerAction() {
+		$_SESSION = array();
+
+		if (ini_get("session.use_cookies")) {
+			$params = session_get_cookie_params();
+			setcookie(session_name(), '', time() - 42000,
+				$params["path"], $params["domain"],
+				$params["secure"], $params["httponly"]
+			);
 		}
-		
-		// ******************* Méthode exécuter action
-		public function executerAction() {
-			if ($this->acteur=="visiteur") {
-				array_push ($this->messagesErreur,"Vous êtes déjà déconnécté.");
-				return "PageAccueil";
-			} elseif (ISSET($_POST['deconnexion'])) {
-				$this->acteur="visiteur";
-				unset($_SESSION['utilisateurConnecte']);
-				return "PageAccueil";
-			} else {
-				return "Deconnecter";				
-			}
-		}
-	}	
+
+		session_destroy();
+
+		header('Location: ?action=voirPageAccueil');
+		exit;
+	}
+}	
 ?>

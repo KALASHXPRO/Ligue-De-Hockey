@@ -3,6 +3,7 @@
 	abstract class Controleur {
 		// ******************* Attributs 
 		protected $messagesErreur = array();
+		protected $messagesConfirmation = array();
 		protected $acteur="visiteur";
 		
 		// ******************* Constructeur vide
@@ -17,7 +18,9 @@
 		
 		// ****************** Méthode privée
 		private function determinerActeur(){
-			session_start();
+			if (session_status() === PHP_SESSION_NONE) {
+			    session_start();
+			}
 			if (ISSET($_SESSION['utilisateurConnecte'])){
 				$this->acteur="utilisateur";
 			}

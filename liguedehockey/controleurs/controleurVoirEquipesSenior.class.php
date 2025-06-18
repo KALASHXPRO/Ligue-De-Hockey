@@ -1,27 +1,29 @@
 <?php
-	include_once("controleurs/controleur.abstract.class.php");
-	include_once("modele/DAO/CalendrierDAO.class.php");
 
-	class VoirCalendrier extends  Controleur {
+	include_once("controleurs/controleur.abstract.class.php");
+
+	include_once("modele/DAO/EquipesSeniorDAO.class.php");
+
+	class VoirEquipesSenior extends  Controleur {
 		// ******************* Attributs
-		private $tabCalendrier;
+		private $tabEquipesSenior;
 		
 		// ******************* Constructeur vide
 		public function __construct() {
 			parent::__construct();
-			$this->tabCalendrier=array();
+			$this->tabEquipesSenior = array();
 		}
 		
 		// ******************* Accesseurs
-		public function getTabCalendrier(){
-			return $this->tabCalendrier;
+		public function getTabEquipesSenior(){
+			return $this->tabEquipesSenior;
 		}
 
 		// ******************* Méthode exécuter action
 		public function executerAction() {
-		$this->tabCalendrier=CalendrierDAO::chercherTous();	
-		return "PageCalendrier";
-	}
+			$this->tabEquipesSenior = EquipesSeniorDAO::chercherTous();	
+			return "PageEquipes";
+		}
 
 }
 ?>

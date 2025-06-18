@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connexion</title>
     <link rel="stylesheet" href="pageconnexionadmin.css">
     <link rel="stylesheet" href="css/pageconnexionadmin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -19,12 +18,12 @@
                   
                   <div class="mb-md-1 mt-md-1 pb-1">
       
-                    <h2 class="fw-bold mb-2 text-uppercase">Veiller vous connectez</h2>
-                    <p class="text-white-50 mb-5">Merci d'entrer votre email et votre mot de passe. </p>
+                    <h2 class="fw-bold mb-2 text-uppercase">Veuillez vous connecter</h2>
+                    <p class="text-white-50 mb-5">Merci d'entrer votre email et votre mot de passe.</p>
                     <form action="/Coterphp/connexiontraitement.php" method="post">
                     <div class="form-outline form-white mb-4">
                       <input name="email" type="email" id="typeEmailX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typeEmailX" >Email</label>
+                      <label class="form-label" for="typeEmailX">Email</label>
                     </div>
       
                     <div class="form-outline form-white mb-4">
@@ -32,16 +31,10 @@
                       <label class="form-label" for="typePasswordX">Mot de passe</label>
                     </div>
       
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit">Confirmer</button>
-                    </form>
-                    <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                      <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                      <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                      <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-                    </div>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Connexion</button>
       
                   </div>
-
+      
                 </div>
               </div>
             </div>

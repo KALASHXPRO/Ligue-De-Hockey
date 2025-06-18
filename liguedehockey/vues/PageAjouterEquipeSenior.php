@@ -10,7 +10,7 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-    <title>Le calendrier junior</title>
+    <title>Ajouter une équipe majeure</title>
 </head>
 <body>
     <header>
@@ -42,16 +42,13 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     </nav>
     <div class="corps">
         <main class="main-content">
-            <div class="apropos"><h2>Le calendrier junior</h2></div>
-            <div class="texte"><p>Consultez ici le calendrier des matchs juniors.</p></div>
-            <?php if (!empty($_SESSION['is_admin'])): ?>
-                <a href="?action=ajouterCalendrierJunior" class="btn-add">Ajouter un match junior</a>
-            <?php endif; ?>
-            <div class="CalendrierTableaux">
-                <?php
-                include_once "/vues/inclusions/fonctions.inc.php";
-                afficherTableCalendriersJunior($controleur->getTabCalendrierJunior(), !empty($_SESSION['is_admin']));
-                ?>
+            <div class="apropos"><h2>Ajouter une équipe majeure</h2></div>
+            <div class="texte">
+                <form action="?action=ajouterEquipeSenior" method="post" class="form-container">
+                    <label for="nom_equipe">Nom de l'équipe :</label>
+                    <input type="text" id="nom_equipe" name="nom_equipe" required>
+                    <button type="submit" class="btn-action edit">Ajouter l'équipe</button>
+                </form>
             </div>
         </main>
     </div>
@@ -61,4 +58,4 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
         </div>
     </footer>
 </body>
-</html>
+</html> 

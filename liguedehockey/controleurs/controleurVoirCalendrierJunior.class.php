@@ -1,26 +1,26 @@
 <?php
 
 	include_once("controleurs/controleur.abstract.class.php");
-	include_once("modele/DAO/CalendrierDAO2.class.php");
+	include_once("modele/DAO/CalendrierJuniorDAO.class.php");
 
-	class VoirCalendrier2 extends  Controleur {
+	class VoirCalendrierJunior extends  Controleur {
 		// ******************* Attributs
-		private $tabCalendrier2;
+		private $tabCalendrierJunior;
 		
 		// ******************* Constructeur vide
 		public function __construct() {
 			parent::__construct();
-			$this->tabCalendrier2=array();
+			$this->tabCalendrierJunior = array();
 		}
 		
 		// ******************* Accesseurs
-		public function getTabCalendrier2(){
-			return $this->tabCalendrier2;
+		public function getTabCalendrierJunior(){
+			return $this->tabCalendrierJunior;
 		}
 
 		// ******************* Méthode exécuter action
 		public function executerAction() {
-		$this->tabCalendrier2=CalendrierDAO2::chercherTous();	
+			$this->tabCalendrierJunior = CalendrierJuniorDAO::chercherTous();
 		return "PageCalendrier2";
 	}
 

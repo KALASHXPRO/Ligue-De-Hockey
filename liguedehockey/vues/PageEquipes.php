@@ -1,79 +1,64 @@
-<?php if(!ISSET($controleur)) header("Location: ..\index.php"); ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if(!ISSET($controleur)) header("Location: ..\\index.php");
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="carouselscript.js"></script>
-
-    <link rel="stylesheet" href="css/style.css">
-    <title>Accueil</title>
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <title>Les équipes majeures</title>
 </head>
 <body>
-
     <header>
-            <div class="Header-elements">
-                <div class="site-logo"><img src="images/logo.png"  width="200" height="150" alt="imagedulogo"></div>
-                <div class="NomDuSite">
-                  <div>
-                  <h1>Bienvenue a la league de hockey</h1></div>
-                  <a href="?action=seConnecter"><p class="seconnecter">Se connecter</p></a>
-                </div>
-              </div>
-        <div class="apropos"><h2>A propos</h2></div>
-        <div class="texte"><p>Nous sommes ravis de vous 
-          accueillir dans notre communauté de passionnés de hockey. <br>  
-          Explorez notre site pour découvrir toutes les informations sur 
-          les équipes, les calendriers, les actualités et bien plus encore.</p></div>
+        <div class="Header-elements">
+            <div class="site-logo"><img src="images/logo.png" width="160" height="120" alt="imagedulogo"></div>
+            <div class="NomDuSite">
+                <h1>Bienvenue à la ligue de hockey</h1>
+                <?php if (!empty($_SESSION['utilisateurConnecte'])): ?>
+                    <h5 style='color:white;text-align:center'>Bienvenue <?php echo htmlspecialchars($_SESSION['utilisateurConnecte']); ?></h5>
+                <?php endif; ?>
+            </div>
+            <?php if (!empty($_SESSION['utilisateurConnecte'])): ?>
+                <a href="?action=seDeconnecter" class="seconnecter">Se déconnecter</a>
+            <?php else: ?>
+                <a href="?action=seConnecter" class="seconnecter">Se connecter</a>
+            <?php endif; ?>
+        </div>
     </header>
+    <nav id="menu-horizontal">
+        <ul>
+            <li><a href="?action=voirPageAccueil">Page d'accueil</a></li>
+            <li><a href="?action=voirEquipesSenior">Les équipes majeures</a></li>
+            <li><a href="?action=voirEquipesJunior">Les équipes juniors</a></li>
+            <li><a href="?action=voirResultatsSenior">Les résultats majeurs</a></li>
+            <li><a href="?action=voirResultatsJunior">Les résultats juniors</a></li>
+            <li><a href="?action=voirCalendrierSenior">Le calendrier majeurs</a></li>
+            <li><a href="?action=voirCalendrierJunior">Le calendrier juniors</a></li>
+        </ul>
+    </nav>
     <div class="corps">
-        
-
-        
-        <div id="menu">
-            <div><h2>MENU</h2></div> 
-            <div id="listeMenu">          
-            <ul>
-                <li><a href="?action=voirPageAccueil" >Page d'accueil</a></li>
-                <li><a href="?action=voirEquipes" >Les equipes majeures</a></li>
-                <li><a href="?action=voirEquipes2" >Les equipes juniors</a></li>
-                <li><a href="?action=voirResultats" >Les resultats majeures</a></li>
-                <li><a href="?action=voirResultats2" >Les resultats juniors</a></li>
-                <li><a href="?action=voirCalendrier" >Le calendrier majeures</a></li>
-                <li><a href="?action=voirCalendrier2" >Le calendrier juniors</a></li>
-            </ul>
-        </div>
-        </div>
-
-        <div class="Équipes">
-        
-        <?php
-        
-            // ==================== Utilisation des fonctions d'affichage ===================== 
-            include "/vues/inclusions/fonctions.inc.php";
-            afficherTableEquipes($controleur->getTabEquipes());
-        
-        ?>
-        </div>
-
-
-
-        
-
+        <main class="main-content">
+            <div class="apropos"><h2>Les équipes majeures</h2></div>
+            <div class="texte"><p>Retrouvez ici toutes les informations sur nos équipes seniors.</p></div>
+            <?php if (!empty($_SESSION['is_admin'])): ?>
+                <a href="?action=ajouterEquipeSenior" class="btn-add">Ajouter une équipe majeure</a>
+            <?php endif; ?>
+            <div class="Équipes">
+                <?php
+                include_once "/vues/inclusions/fonctions.inc.php";
+                afficherTableEquipesSenior($controleur->getTabEquipesSenior(), !empty($_SESSION['is_admin']));
+                ?>
+            </div>
+        </main>
     </div>
     <footer>
-      <div class="contact">
-        <h2><a href="mailto:2253910@crosemont.qc.ca"><h2>Contact</h2></a></h2>
-    </div>
-    
-    
+        <div class="contact">
+            <a href="mailto:2253910@crosemont.qc.ca">CONTACT</a>
+        </div>
     </footer>
-    
-  
-    
-
 </body>
 </html>

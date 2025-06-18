@@ -1,6 +1,7 @@
 <?php
 function afficherErreurs($tabMessages) {
 	if (count($tabMessages) > 0) {
+		echo "<div class=\"login-error\">";
 		echo "<ul>";
 		foreach ($tabMessages as $message) {
 			echo "<li>$message</li>";
@@ -23,70 +24,88 @@ function afficherMenu($tableau, $indiceOptionActive) {
     echo "</ul>";
 }
 
-function afficherUneEquipe($UneEquipe) {
+function afficherUneEquipeSenior($UneEquipeSenior) {
     echo "<ul>";
-    echo "<li>Id :" . $UneEquipe->getId() . "</li>";
-    echo "<li>Nom :" . $UneEquipe->getNom() . "</li>";
-    echo "</ul>";
+    echo "<li>Id :" . $UneEquipeSenior->getId() . "</li>";
+    echo "<li>Nom :" . $UneEquipeSenior->getNom() . "</li>";
+    echo "</ul>";   
 }
 
-function afficherTableEquipes($unTableau) {
+function afficherTableEquipesSenior($unTableauSenior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>Nom</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau as $UneEquipe) {
+    foreach ($unTableauSenior as $UneEquipeSenior) {
         echo "<tr>";
-        echo "<td>" . $UneEquipe->getId() . "</td>";
-        echo "<td>" . $UneEquipe->getNom() . "</td>";
+        echo "<td>" . $UneEquipeSenior->getId() . "</td>";
+        echo "<td>" . $UneEquipeSenior->getNom() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierEquipeSenior&id=" . $UneEquipeSenior->getId() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerEquipeSenior&id=" . $UneEquipeSenior->getId() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette équipe ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
 }
 
-function afficherUneEquipe2($UneEquipe2) {
+function afficherUneEquipeJunior($UneEquipeJunior) {
     echo "<ul>";
-    echo "<li>Id :" . $UneEquipe2->getId2() . "</li>";
-    echo "<li>Nom :" . $UneEquipe2->getNom2() . "</li>";
+    echo "<li>Id :" . $UneEquipeJunior->getId() . "</li>";
+    echo "<li>Nom :" . $UneEquipeJunior->getNom() . "</li>";
     echo "</ul>";
 }
 
-function afficherTableEquipes2($unTableau2) {
+function afficherTableEquipesJunior($unTableauJunior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
     echo "<th>id</th>";
     echo "<th>Nom</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau2 as $UneEquipe2) {
+    foreach ($unTableauJunior as $UneEquipeJunior) {
         echo "<tr>";
-        echo "<td>" . $UneEquipe2->getId2() . "</td>";
-        echo "<td>" . $UneEquipe2->getNom2() . "</td>";
+        echo "<td>" . $UneEquipeJunior->getId() . "</td>";
+        echo "<td>" . $UneEquipeJunior->getNom() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierEquipeJunior&id=" . $UneEquipeJunior->getId() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerEquipeJunior&id=" . $UneEquipeJunior->getId() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer cette équipe ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
 }
 
-function afficherUnResultat($UnResultat) {
+function afficherUnResultatSenior($UnResultatSenior) {
     echo "<ul>";
-    echo "<li>Id :" . $UnResultat->getScore() . "</li>";
-    echo "<li>Nom :" . $UnResultat->getEquipeLocale() . "</li>";
-    echo "<li>Id :" . $UnResultat->getEquipeVisiteuse() . "</li>";
-    echo "<li>Id :" . $UnResultat->getIdMatch() . "</li>";
+    echo "<li>Id :" . $UnResultatSenior->getScore() . "</li>";
+    echo "<li>Nom :" . $UnResultatSenior->getEquipeLocale() . "</li>";
+    echo "<li>Id :" . $UnResultatSenior->getEquipeVisiteuse() . "</li>";
+    echo "<li>Id :" . $UnResultatSenior->getIdMatch() . "</li>";
     echo "</ul>";
 }
 
-function afficherTableResultats($unTableau) {
+function afficherTableResultatsSenior($unTableauSenior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -94,32 +113,41 @@ function afficherTableResultats($unTableau) {
     echo "<th>Equipe Locale</th>";
     echo "<th>Equipe Visiteuse</th>";
     echo "<th>Id Match</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau as $UnResultat) {
+    foreach ($unTableauSenior as $UnResultatSenior) {
         echo "<tr>";
-        echo "<td>" . $UnResultat->getScore() . "</td>";
-        echo "<td>" . $UnResultat->getEquipeLocale() . "</td>";
-        echo "<td>" . $UnResultat->getEquipeVisiteuse() . "</td>";
-        echo "<td>" . $UnResultat->getIdMatch() . "</td>";
+        echo "<td>" . $UnResultatSenior->getScore() . "</td>";
+        echo "<td>" . $UnResultatSenior->getEquipeLocale() . "</td>";
+        echo "<td>" . $UnResultatSenior->getEquipeVisiteuse() . "</td>";
+        echo "<td>" . $UnResultatSenior->getIdMatch() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierResultatSenior&id=" . $UnResultatSenior->getIdMatch() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerResultatSenior&id=" . $UnResultatSenior->getIdMatch() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce résultat ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
 }
 
-function afficherUnResultat2($UnResultat2) {
+function afficherUnResultatJunior($UnResultatJunior) {
     echo "<ul>";
-    echo "<li>Id :" . $UnResultat2->getScore2() . "</li>";
-    echo "<li>Nom :" . $UnResultat2->getEquipeLocale2() . "</li>";
-    echo "<li>Id :" . $UnResultat2->getEquipeVisiteuse2() . "</li>";
-    echo "<li>Id :" . $UnResultat2->getIdMatch2() . "</li>";
+    echo "<li>Id :" . $UnResultatJunior->getScore() . "</li>";
+    echo "<li>Nom :" . $UnResultatJunior->getEquipeLocale() . "</li>";
+    echo "<li>Id :" . $UnResultatJunior->getEquipeVisiteuse() . "</li>";
+    echo "<li>Id :" . $UnResultatJunior->getIdMatch() . "</li>";
     echo "</ul>";
 }
 
-function afficherTableResultats2($unTableau2) {
+function afficherTableResultatsJunior($unTableauJunior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -127,33 +155,42 @@ function afficherTableResultats2($unTableau2) {
     echo "<th>Equipe Locale</th>";
     echo "<th>Equipe Visiteuse</th>";
     echo "<th>Id Match</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau2 as $UnResultat2) {
+    foreach ($unTableauJunior as $UnResultatJunior) {
         echo "<tr>";
-        echo "<td>" . $UnResultat2->getScore2() . "</td>";
-        echo "<td>" . $UnResultat2->getEquipeLocale2() . "</td>";
-        echo "<td>" . $UnResultat2->getEquipeVisiteuse2() . "</td>";
-        echo "<td>" . $UnResultat2->getIdMatch2() . "</td>";
+        echo "<td>" . $UnResultatJunior->getScore() . "</td>";
+        echo "<td>" . $UnResultatJunior->getEquipeLocale() . "</td>";
+        echo "<td>" . $UnResultatJunior->getEquipeVisiteuse() . "</td>";
+        echo "<td>" . $UnResultatJunior->getIdMatch() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierResultatJunior&id=" . $UnResultatJunior->getIdMatch() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerResultatJunior&id=" . $UnResultatJunior->getIdMatch() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce résultat ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
 }
 
-function afficherUnCalendrier($UnCalendrier) {
+function afficherUnCalendrierSenior($UnCalendrierSenior) {
     echo "<ul>";
-    echo "<li>Id :" . $UnCalendrier->getId() . "</li>";
-    echo "<li>Nom :" . $UnCalendrier->getDate() . "</li>";
-    echo "<li>Id :" . $UnCalendrier->getLieu() . "</li>";
-    echo "<li>Id :" . $UnCalendrier->getEquipeLocale() . "</li>";
-    echo "<li>Id :" . $UnCalendrier->getEquipeVisiteuse() . "</li>";
+    echo "<li>Id :" . $UnCalendrierSenior->getId() . "</li>";
+    echo "<li>Nom :" . $UnCalendrierSenior->getDate() . "</li>";
+    echo "<li>Id :" . $UnCalendrierSenior->getLieu() . "</li>";
+    echo "<li>Id :" . $UnCalendrierSenior->getEquipeLocale() . "</li>";
+    echo "<li>Id :" . $UnCalendrierSenior->getEquipeVisiteuse() . "</li>";
     echo "</ul>";
 }
 
-function afficherTableCalendriers($unTableau) {
+function afficherTableCalendriersSenior($unTableauSenior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -162,34 +199,43 @@ function afficherTableCalendriers($unTableau) {
     echo "<th>Lieu Match</th>";
     echo "<th>Equipe Locale</th>";
     echo "<th>Equipe Visiteuse</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau as $UnCalendrier) {
+    foreach ($unTableauSenior as $UnCalendrierSenior) {
         echo "<tr>";
-        echo "<td>" . $UnCalendrier->getId() . "</td>";
-        echo "<td>" . $UnCalendrier->getDate() . "</td>";
-        echo "<td>" . $UnCalendrier->getLieu() . "</td>";
-        echo "<td>" . $UnCalendrier->getEquipeLocale() . "</td>";
-        echo "<td>" . $UnCalendrier->getEquipeVisiteuse() . "</td>";
+        echo "<td>" . $UnCalendrierSenior->getId() . "</td>";
+        echo "<td>" . $UnCalendrierSenior->getDate() . "</td>";
+        echo "<td>" . $UnCalendrierSenior->getLieu() . "</td>";
+        echo "<td>" . $UnCalendrierSenior->getEquipeLocale() . "</td>";
+        echo "<td>" . $UnCalendrierSenior->getEquipeVisiteuse() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierCalendrierSenior&id=" . $UnCalendrierSenior->getId() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerCalendrierSenior&id=" . $UnCalendrierSenior->getId() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce match ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
     echo "</table>";
 }
 
-function afficherUnCalendrier2($UnCalendrier2) {
+function afficherUnCalendrierJunior($UnCalendrierJunior) {
     echo "<ul>";
-    echo "<li>Id :" . $UnCalendrier2->getId2() . "</li>";
-    echo "<li>Nom :" . $UnCalendrier2->getDate2() . "</li>";
-    echo "<li>Id :" . $UnCalendrier2->getLieu2() . "</li>";
-    echo "<li>Id :" . $UnCalendrier2->getEquipeLocale2() . "</li>";
-    echo "<li>Id :" . $UnCalendrier2->getEquipeVisiteuse2() . "</li>";
+    echo "<li>Id :" . $UnCalendrierJunior->getId() . "</li>";
+    echo "<li>Nom :" . $UnCalendrierJunior->getDate() . "</li>";
+    echo "<li>Id :" . $UnCalendrierJunior->getLieu() . "</li>";
+    echo "<li>Id :" . $UnCalendrierJunior->getEquipeLocale() . "</li>";
+    echo "<li>Id :" . $UnCalendrierJunior->getEquipeVisiteuse() . "</li>";
     echo "</ul>";
 }
 
-function afficherTableCalendriers2($unTableau2) {
+function afficherTableCalendriersJunior($unTableauJunior, $isAdmin = false) {
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -198,17 +244,26 @@ function afficherTableCalendriers2($unTableau2) {
     echo "<th>Lieu Match</th>";
     echo "<th>Equipe Locale</th>";
     echo "<th>Equipe Visiteuse</th>";
+    if ($isAdmin) {
+        echo "<th>Actions</th>";
+    }
     echo "</tr>";
     echo "</thead>";
 
     echo "<tbody>";
-    foreach ($unTableau2 as $UnCalendrier2) {
+    foreach ($unTableauJunior as $UnCalendrierJunior) {
         echo "<tr>";
-        echo "<td>" . $UnCalendrier2->getId2() . "</td>";
-        echo "<td>" . $UnCalendrier2->getDate2() . "</td>";
-        echo "<td>" . $UnCalendrier2->getLieu2() . "</td>";
-        echo "<td>" . $UnCalendrier2->getEquipeLocale2() . "</td>";
-        echo "<td>" . $UnCalendrier2->getEquipeVisiteuse2() . "</td>";
+        echo "<td>" . $UnCalendrierJunior->getId() . "</td>";
+        echo "<td>" . $UnCalendrierJunior->getDate() . "</td>";
+        echo "<td>" . $UnCalendrierJunior->getLieu() . "</td>";
+        echo "<td>" . $UnCalendrierJunior->getEquipeLocale() . "</td>";
+        echo "<td>" . $UnCalendrierJunior->getEquipeVisiteuse() . "</td>";
+        if ($isAdmin) {
+            echo "<td>";
+            echo "<a href=\"?action=modifierCalendrierJunior&id=" . $UnCalendrierJunior->getId() . "\" class=\"btn-action edit\">Modifier</a>";
+            echo "<a href=\"?action=supprimerCalendrierJunior&id=" . $UnCalendrierJunior->getId() . "\" class=\"btn-action delete\" onclick=\"return confirm('Êtes-vous sûr de vouloir supprimer ce match ?');\">Supprimer</a>";
+            echo "</td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
@@ -219,7 +274,7 @@ function afficherUnUtilisateur($UnUtilisateur){
     echo "<h2>" . $UnUtilisateur->getNomUtilisateur(). "<h2>";
 }
 
-function afficherTableUtilisateurs($unTableau2){
+function afficherTableUtilisateurs($unTableauUtilisateur){
     echo "<h2>Utilisateur</h2>";
 }
 ?>

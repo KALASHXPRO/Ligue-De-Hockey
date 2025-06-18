@@ -2,28 +2,29 @@
 
 	include_once("controleurs/controleur.abstract.class.php");
 
-	include_once("modele/DAO/EquipesDAO.class.php");
+	include_once("modele/DAO/EquipesJuniorDAO.class.php");
 
-	class VoirEquipes extends  Controleur {
+	class VoirEquipesJunior extends  Controleur {
 		// ******************* Attributs
-		private $tabEquipes;
+		private $tabEquipesJunior;
 		
 		// ******************* Constructeur vide
 		public function __construct() {
 			parent::__construct();
-			$this->tabEquipes=array();
+			$this->tabEquipesJunior = array();
 		}
 		
 		// ******************* Accesseurs
-		public function getTabEquipes(){
-			return $this->tabEquipes;
+		public function getTabEquipesJunior(){
+			return $this->tabEquipesJunior;
 		}
 
 		// ******************* Méthode exécuter action
 		public function executerAction() {
-		$this->tabEquipes=EquipesDAO::chercherTous();	
-		return "PageEquipes";
+			$this->tabEquipesJunior = EquipesJuniorDAO::chercherTous();
+		return "PageEquipes2";
 	}
 
 }
+
 ?>

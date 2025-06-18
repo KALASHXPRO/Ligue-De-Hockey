@@ -9,17 +9,12 @@ CREATE TABLE utilisateur (
 );
 
 INSERT INTO utilisateur VALUES ('root','root');
-INSERT INTO utilisateur VALUES ('ismail','1234');
-INSERT INTO utilisateur VALUES ('dave','4321');
-INSERT INTO utilisateur VALUES ('Lebron','lebron');
-
-
-
+INSERT INTO utilisateur VALUES ('admin','admin');
 
 CREATE TABLE Equipes_Majeures
 (
-    id_equipes_majeurs INT PRIMARY KEY,
-    nom_equipes_majeurs VARCHAR(65)
+    id_equipes_majeurs INT PRIMARY KEY AUTO_INCREMENT,
+    nom_equipes_majeurs VARCHAR(65) UNIQUE
 );
 
 INSERT INTO Equipes_Majeures(id_equipes_majeurs,nom_equipes_majeurs)
@@ -45,11 +40,13 @@ VALUES(10,"Les Sabres enflammées");
 
 CREATE TABLE Matches_Ligue_Majeure
 (
-    id_matches_majeurs INT PRIMARY KEY,
+    id_matches_majeurs INT PRIMARY KEY AUTO_INCREMENT,
     date_matches_majeurs DATE,
     lieu_matches_majeurs VARCHAR(100),
     nom_equipes_locales_majeures VARCHAR(65),
-    nom_equipes_visiteuses_majeures VARCHAR(65)
+    nom_equipes_visiteuses_majeures VARCHAR(65),
+    FOREIGN KEY (nom_equipes_locales_majeures) REFERENCES Equipes_Majeures(nom_equipes_majeurs) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (nom_equipes_visiteuses_majeures) REFERENCES Equipes_Majeures(nom_equipes_majeurs) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Matches_Ligue_Majeure(id_matches_majeurs,date_matches_majeurs,lieu_matches_majeurs,nom_equipes_locales_majeures,
@@ -69,11 +66,13 @@ nom_equipes_visiteuses_majeures)
 VALUES(5,"2023-10-22","Aréna de Toronto","Les Sénateurs de Toronto","Les Marmottes givrées");
 
 CREATE TABLE Resultats_Majeurs (
-    score_matchs VARCHAR(6) PRIMARY KEY,
+    score_matchs VARCHAR(6),
     nom_equipes_locales_majeures VARCHAR(65),
     nom_equipes_visiteuses_majeures VARCHAR(65),
-    id_matches_majeurs INT,
-    FOREIGN KEY (id_matches_majeurs) REFERENCES Matches_Ligue_Majeure(id_matches_majeurs)
+    id_matches_majeurs INT PRIMARY KEY,
+    FOREIGN KEY (id_matches_majeurs) REFERENCES Matches_Ligue_Majeure(id_matches_majeurs) ON DELETE CASCADE,
+    FOREIGN KEY (nom_equipes_locales_majeures) REFERENCES Equipes_Majeures(nom_equipes_majeurs) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (nom_equipes_visiteuses_majeures) REFERENCES Equipes_Majeures(nom_equipes_majeurs) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Resultats_Majeurs(score_matchs,nom_equipes_locales_majeures,nom_equipes_visiteuses_majeures,id_matches_majeurs)
@@ -89,8 +88,8 @@ VALUES("4-2","Les Sénateurs de Toronto","Les Marmottes givrées",5);
 
 CREATE TABLE Equipes_Juniors
 (
- id_equipes_juniors INT,
- nom_equipes_juniors VARCHAR(65)
+ id_equipes_juniors INT PRIMARY KEY AUTO_INCREMENT,
+ nom_equipes_juniors VARCHAR(65) UNIQUE
 );
 
 INSERT INTO Equipes_Juniors(id_equipes_juniors,nom_equipes_juniors)
@@ -116,11 +115,13 @@ VALUES(20,"Les lightings de Montréal");
 
 CREATE TABLE Matches_Ligue_Junior
 (
-    id_matches_juniors INT PRIMARY KEY,
+    id_matches_juniors INT PRIMARY KEY AUTO_INCREMENT,
     date_matches_juniors DATE,
     lieu_matches_juniors VARCHAR(100),
     nom_equipes_locales_juniors VARCHAR(65),
-    nom_equipes_visiteuses_juniors VARCHAR(65)
+    nom_equipes_visiteuses_juniors VARCHAR(65),
+    FOREIGN KEY (nom_equipes_locales_juniors) REFERENCES Equipes_Juniors(nom_equipes_juniors) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (nom_equipes_visiteuses_juniors) REFERENCES Equipes_Juniors(nom_equipes_juniors) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Matches_Ligue_Junior(id_matches_juniors, date_matches_juniors,lieu_matches_juniors,nom_equipes_locales_juniors,nom_equipes_visiteuses_juniors)
@@ -135,11 +136,13 @@ INSERT INTO Matches_Ligue_Junior(id_matches_juniors, date_matches_juniors,lieu_m
 VALUES(5,"2024-06-30","Saguenay Lac St-Jean","Les foudroyants de Saguenay","Les Requins Blancs");
 
 CREATE TABLE Resultats_Juniors (
-    score_matchs_juniors VARCHAR(6) PRIMARY KEY,
+    score_matchs_juniors VARCHAR(6),
     nom_equipes_locales_juniors VARCHAR(65),
     nom_equipes_visiteuses_juniors VARCHAR(65),
-    id_matches_juniors INT,
-    FOREIGN KEY (id_matches_juniors) REFERENCES Matches_Ligue_Junior(id_matches_juniors)
+    id_matches_juniors INT PRIMARY KEY,
+    FOREIGN KEY (id_matches_juniors) REFERENCES Matches_Ligue_Junior(id_matches_juniors) ON DELETE CASCADE,
+    FOREIGN KEY (nom_equipes_locales_juniors) REFERENCES Equipes_Juniors(nom_equipes_juniors) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (nom_equipes_visiteuses_juniors) REFERENCES Equipes_Juniors(nom_equipes_juniors) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Resultats_Juniors(score_matchs_juniors,nom_equipes_locales_juniors,nom_equipes_visiteuses_juniors,id_matches_juniors)
@@ -151,5 +154,4 @@ VALUES("4-4","Les penguins d'Ottawa","Les Dragons de glace",3);
 INSERT INTO Resultats_Juniors(score_matchs_juniors,nom_equipes_locales_juniors,nom_equipes_visiteuses_juniors,id_matches_juniors)
 VALUES("3-5","Les cyclone de Longueil","Les Patineurs Fringuants",4);
 INSERT INTO Resultats_Juniors(score_matchs_juniors,nom_equipes_locales_juniors,nom_equipes_visiteuses_juniors,id_matches_juniors)
-VALUES("2-1","Les foudroyants de Saguenay","Les Requins Blancs",5)
-
+VALUES("2-1","Les foudroyants de Saguenay","Les Requins Blancs",5);

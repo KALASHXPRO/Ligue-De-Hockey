@@ -1,28 +1,26 @@
 <?php
-
 	include_once("controleurs/controleur.abstract.class.php");
+	include_once("modele/DAO/ResultatsJuniorDAO.class.php");
 
-	include_once("modele/DAO/ResultatsDAO.class.php");
-
-	class VoirResultats extends  Controleur {
+	class VoirResultatsJunior extends  Controleur {
 		// ******************* Attributs
-		private $tabResultats;
+		private $tabResultatsJunior;
 		
 		// ******************* Constructeur vide
 		public function __construct() {
 			parent::__construct();
-			$this->tabResultats=array();
+			$this->tabResultatsJunior = array();
 		}
 		
 		// ******************* Accesseurs
-		public function getTabResultats(){
-			return $this->tabResultats;
+		public function getTabResultatsJunior(){
+			return $this->tabResultatsJunior;
 		}
 
 		// ******************* Méthode exécuter action
 		public function executerAction() {
-		$this->tabResultats=ResultatsDAO::chercherTous();	
-		return "PageResultats";
+			$this->tabResultatsJunior = ResultatsJuniorDAO::chercherTous();
+		return "PageResultats2";
 	}
 
 }

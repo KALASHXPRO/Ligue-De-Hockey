@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if(!ISSET($controleur)) header("Location: ..\\index.php");
+include_once("modele/DAO/EquipesJuniorDAO.class.php");
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,7 +11,7 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-    <title>Le calendrier junior</title>
+    <title>Ajouter un match junior</title>
 </head>
 <body>
     <header>
@@ -42,16 +43,40 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
     </nav>
     <div class="corps">
         <main class="main-content">
-            <div class="apropos"><h2>Le calendrier junior</h2></div>
-            <div class="texte"><p>Consultez ici le calendrier des matchs juniors.</p></div>
-            <?php if (!empty($_SESSION['is_admin'])): ?>
-                <a href="?action=ajouterCalendrierJunior" class="btn-add">Ajouter un match junior</a>
-            <?php endif; ?>
-            <div class="CalendrierTableaux">
-                <?php
-                include_once "/vues/inclusions/fonctions.inc.php";
-                afficherTableCalendriersJunior($controleur->getTabCalendrierJunior(), !empty($_SESSION['is_admin']));
-                ?>
+            <div class="apropos"><h2>Ajouter un match junior</h2></div>
+            <div class="texte">
+                <form action="?action=ajouterCalendrierJunior" method="post" class="form-container">
+                    <label for="dateMatch">Date :</label>
+                    <input type="date" id="dateMatch" name="dateMatch" required>
+
+                    <label for="lieuMatch">Lieu :</label>
+                    <input type="text" id="lieuMatch" name="lieuMatch" required>
+
+                    <label for="equipeLocale">Équipe Locale :</label>
+                    <select id="equipeLocale" name="equipeLocale" required>
+                        <option value="">Sélectionnez une équipe</option>
+                        <?php 
+                        $equipes = EquipesJuniorDAO::obtenirToutesLesEquipes();
+                        foreach ($equipes as $equipe) { 
+                        ?>
+                            <option value="<?php echo htmlspecialchars($equipe->getNom()); ?>">
+                                <?php echo htmlspecialchars($equipe->getNom()); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+
+                    <label for="equipeVisiteuse">Équipe Visiteuse :</label>
+                    <select id="equipeVisiteuse" name="equipeVisiteuse" required>
+                        <option value="">Sélectionnez une équipe</option>
+                        <?php foreach ($equipes as $equipe) { ?>
+                            <option value="<?php echo htmlspecialchars($equipe->getNom()); ?>">
+                                <?php echo htmlspecialchars($equipe->getNom()); ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+
+                    <button type="submit" class="btn-action edit">Ajouter le match</button>
+                </form>
             </div>
         </main>
     </div>
@@ -61,4 +86,4 @@ if(!ISSET($controleur)) header("Location: ..\\index.php");
         </div>
     </footer>
 </body>
-</html>
+</html> 
